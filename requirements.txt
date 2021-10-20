@@ -1,2 +1,1 @@
-flask==1.1.2
-gunicorn==19.9.0
+flask

@@ -1,11 +1,4 @@
-from flask import Flask, request, make_response
-app = Flask(__name__)
-
-#from OpenSSL import SSL
-#context = SSL.Context(SSL.PROTOCOL_TLSv1_2)
-#context.use_privatekey_file('localhost.key')
-#context.use_certificate_file('localhost.crt') 
-
+from flask import Flask
 
 @app.route('/')
 def index():
@@ -43,4 +36,4 @@ if __name__ == ("__main__"):
 
     #app.run(host='0.0.0.0', port = 8000, debug=True, ssl_context\'C:\Users\rendo\Desktop\my_projectadhoc\ssl\key.pem=context)
 
-    app.run(host='0.0.0.0', port = 8000)
+    app.run() #host='0.0.0.0', port = 8000)
