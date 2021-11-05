@@ -2,7 +2,7 @@ FROM tiangolo/uwsgi-nginx-flask
 
 WORKDIR /app
 
-ENV CONTAINERIZE_APP_1=server.py
+ENV CONTAINERIZE_APP_1=main.py
 
 ENV FLASK_RUN_HOST=0.0.0.0
 
