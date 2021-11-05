@@ -12,7 +12,7 @@
           dockerfile: Dockerfile
         expose: 
             - 8000
-        image: flask_app
+        image: tiangolo/uwsgi-nginx-flask
         container_name: containerize_app_1
         volumes:
               - ./:/my_projectadhoc
@@ -27,15 +27,15 @@
             - 8000:8000
         networks:
             my_adhocproject_network:
-    redis_app:
-        image: redis:latest
-        command: redis-server --requirepass add_password_here
-        expose:
-        - 6379
-        ports:
-        - 6000:6379
-        networks:
-        - my_adhocproject_network
+   # redis_app:
+    #    image: redis:latest
+    #    command: redis-server --requirepass add_password_here
+    #    expose:
+    #    - 6379
+     #   ports:
+     #   - 6000:6379
+     #   networks:
+     #   - my_adhocproject_network
   
     nginx:
         image: nginx
@@ -44,11 +44,12 @@
         - containerize_app_1
         volumes:
         #- ./nginx.conf:/etc/nginx/conf.d/default.conf
-        -  ./run/desktop/mnt/host/c/User/rendo/desktop/my_projectadhoc/conf.d/default.conf
+        #-  ./run/desktop/mnt/host/c/User/rendo/desktop/my_projectadhoc/conf.d/default.conf
         #-  ./conf.d/proxydefault.conf:/etc/nginx/conf.d/proxydefault.conf
-        -  ./ssl/localhost.key:/etc/nginx/files/localhost.key
-        -  ./ssl/localhost.crt:/etc/nginx/files/localhost.crt
-        -  ./conf.d/default.conf:/etc/nginx/conf.d/default.conf
+        -  ./ssl/localhost.key:/etc/ssl/certs/localhost.key
+        -  ./ssl/localhost.crt:/etc/ssl/certs/localhost.crt
+        -  ./nginx/nginx1.conf:/etc/nginx/sites-enabled/nginx1.conf
+        #-  ./conf.d/default.conf:/etc/nginx/conf.d/default.conf
         #- ./ssl/.:/etc/nginx/files/
         #-  ./conf.d/proxydefault.conf:/etc/nginx/sites-available/proxydefault.conf
         #- ./ssl/localhost.crt:/etc/nginx/files/
@@ -57,7 +58,7 @@
         #- ./conf.d:/etc/nginx/conf.d/default.conf
         ports:
         - "8080:80"
-        - "443:443"
+        - "8081:443"
         networks:
         - my_adhocproject_network
 
